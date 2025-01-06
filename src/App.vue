@@ -10,11 +10,15 @@
 
       <v-spacer></v-spacer>
 
+      <v-btn icon @click="changeTheme">
+        <v-icon :icon="darkTheme ? 'mdi-weather-night' : 'mdi-weather-sunny'"></v-icon>
+      </v-btn>
+
       <v-menu transition="scale-transition">
       <template v-slot:activator="{ props }">
         <v-btn icon v-bind="props">
           <v-badge content="6" size="x-small" color="red-darken-2">
-            <v-icon icon="mdi-bell" color="blue-darken-4"></v-icon>
+            <v-icon icon="mdi-bell"></v-icon>
           </v-badge>
         </v-btn>
       </template>
@@ -31,7 +35,7 @@
         </v-list-item>
       </v-list>
     </v-menu>
-      <v-btn to="/login" variant="outlined" size="small" color="red">
+      <v-btn to="/login" variant="outlined" size="small">
         Login
       </v-btn>
     </v-toolbar>
@@ -45,7 +49,9 @@
 </template>
 
 <script setup lang="ts">
-  import { RouterView } from 'vue-router'
+  import { ref } from 'vue';
+import { RouterView } from 'vue-router'
+import { useTheme } from 'vuetify';
 
   const notifications = [
   {
@@ -79,4 +85,12 @@
     color: "orange",
   },
 ];
+
+const darkTheme = ref(true);
+const theme = useTheme();
+
+function changeTheme() {
+  darkTheme.value = !darkTheme.value;
+  theme.global.name.value = darkTheme.value ? 'dark' : 'light'
+}
 </script>

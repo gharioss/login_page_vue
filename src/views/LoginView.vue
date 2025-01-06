@@ -16,7 +16,6 @@
             <v-form @submit.prevent="submit">
               <v-text-field
                   prepend-inner-icon="mdi-mail"
-                  variant="underlined"
                   v-model="form.email"
                   label="Email"
               ></v-text-field>
@@ -24,7 +23,6 @@
               <v-text-field
                   type="password"
                   prepend-inner-icon="mdi-key"
-                  variant="underlined"
                   v-model="form.password"
                   label="Password"
               ></v-text-field>
@@ -37,12 +35,12 @@
                   hide-details
                 ></v-checkbox>
 
-              <v-btn color="primary" class="mt-2" type="submit" block>
+              <v-btn color="primary" class="mt-2" type="submit" variant="elevated" block>
                 Submit
               </v-btn>
             </v-form>
           </v-card-item>
-          <div class="mx-4">
+          <div class="mx-4 mb-4">
             <v-btn block to="/register">Register</v-btn>
           </div>
         </v-card>

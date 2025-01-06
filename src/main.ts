@@ -14,6 +14,13 @@ import * as directives from 'vuetify/directives'
 const vuetify = createVuetify({
   components,
   directives,
+  defaults: {
+    VBtn: { variant: "outlined"},
+    VTextField: { variant: "underlined" }
+  },
+  theme: {
+    defaultTheme: "dark",
+  }
 })
 
 app.use(router)
