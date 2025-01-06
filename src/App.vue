@@ -20,9 +20,9 @@
     </v-toolbar>
     
     <v-main>
-      <v-container fluid>
+      <v-fade-transition>
         <RouterView />
-      </v-container>
+      </v-fade-transition>
     </v-main>
   </v-app>
 </template>
