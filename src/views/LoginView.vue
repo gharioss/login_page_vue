@@ -16,6 +16,7 @@
             <v-form @submit.prevent="submit">
               <v-text-field
                   prepend-inner-icon="mdi-mail"
+                  :rules="[rules.required, rules.email]"
                   v-model="form.email"
                   label="Email"
               ></v-text-field>
@@ -23,6 +24,7 @@
               <v-text-field
                   type="password"
                   prepend-inner-icon="mdi-key"
+                  :rules="[rules.required]"
                   v-model="form.password"
                   label="Password"
               ></v-text-field>
@@ -61,6 +63,10 @@
     const isLoading = ref(false);
 
     function submit() {
+      if(form.value.email === '' || form.value.password === '') {
+        return;
+      }
+
       isLoading.value = true;
 
       setTimeout(() => {
@@ -69,4 +75,14 @@
       }, 2000);
 
     }
+
+    const rules = {
+      required: (value: any) => !!value || "Required.",
+      email: (value: any) => {
+        const pattern =
+          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return pattern.test(value) || "Invalid e-mail.";
+      },
+    };
+
   </script>
